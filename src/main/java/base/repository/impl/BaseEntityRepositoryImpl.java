@@ -5,6 +5,7 @@ import base.repository.BaseEntityRepository;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public abstract class BaseEntityRepositoryImpl<T extends BaseEntity<ID>, ID exte
             beginTransaction();
             saveWithoutTransaction(entity);
             commitTransaction();
+            entityManager.clear();
         } catch (Exception e) {
             e.printStackTrace();
             rollBack();
@@ -68,6 +70,15 @@ public abstract class BaseEntityRepositoryImpl<T extends BaseEntity<ID>, ID exte
                 "FROM " + getEntityClass().getSimpleName(), getEntityClass()
         ).getResultList();
 
+    }
+
+    @Override
+    public boolean existsById(ID id) {
+        TypedQuery<Long> query = entityManager.createQuery(
+                "select count(t) from " + getEntityClass().getSimpleName() + " t where t.id = :id", Long.class
+        );
+        query.setParameter("id", id);
+        return query.getSingleResult() > 0;
     }
 
     @Override

@@ -1,10 +1,7 @@
 package entity;
 
 import base.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,23 +10,39 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@SuppressWarnings("unused")
+@ToString
 @Entity
 public class Course extends BaseEntity<Integer> {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Lesson lesson;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Teacher teacher;
 
     @OneToMany(mappedBy = "course")
+    @ToString.Exclude
     private Set<ReportCard> reportCard;
 
     @Embedded
     private Term term;
 
-    @Column(name = "is_pass")
-    private Boolean isPass;
 
+    public Course(Lesson lesson, Teacher teacher, Term term) {
+        this.lesson = lesson;
+        this.teacher = teacher;
+        this.term = term;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id = " + getId() +
+                " lesson= " + lesson +
+                ", teacher= " + teacher +
+                ", reportCard= " + reportCard +
+                ", term= " + term +
+                "} ";
+    }
 }

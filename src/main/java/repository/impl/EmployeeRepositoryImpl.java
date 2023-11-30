@@ -5,7 +5,6 @@ import repository.EmployeeRepository;
 
 import javax.persistence.EntityManager;
 
-@SuppressWarnings("unused")
 public class EmployeeRepositoryImpl extends UserRepositoryImpl<Employee> implements EmployeeRepository {
 
     public EmployeeRepositoryImpl(EntityManager entityManager) {

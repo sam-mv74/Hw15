@@ -5,7 +5,6 @@ import entity.Lesson;
 import repository.LessonRepository;
 
 import javax.persistence.EntityManager;
-@SuppressWarnings("unused")
 public class LessonRepositoryImpl extends BaseEntityRepositoryImpl<Lesson,Integer> implements LessonRepository {
     public LessonRepositoryImpl(EntityManager entityManager) {
         super(entityManager);

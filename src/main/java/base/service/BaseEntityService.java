@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @SuppressWarnings("unused")
-public interface BaseEntityService<T extends BaseEntity<ID>,ID extends Serializable> {
+public interface BaseEntityService<T extends BaseEntity<ID>, ID extends Serializable> {
 
     void saveOrUpdate(T entity);
 
@@ -16,6 +16,8 @@ public interface BaseEntityService<T extends BaseEntity<ID>,ID extends Serializa
     Optional<T> findById(ID id);
 
     Collection<T> findAll();
+
+    boolean existsById(ID id);
 
     void beginTransaction();
 

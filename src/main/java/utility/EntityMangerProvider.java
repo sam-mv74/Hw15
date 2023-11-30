@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class EntityMangerProvider {
-
     @Getter
     private final static EntityManager entityManager ;
     static {
@@ -15,5 +14,4 @@ public class EntityMangerProvider {
                 Persistence.createEntityManagerFactory("default");
         entityManager = emf.createEntityManager();
     }
-
 }

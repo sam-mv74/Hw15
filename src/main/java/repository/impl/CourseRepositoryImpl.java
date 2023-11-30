@@ -5,8 +5,8 @@ import entity.Course;
 import repository.CourseRepository;
 
 import javax.persistence.EntityManager;
-@SuppressWarnings("unused")
-public class CourseRepositoryImpl extends BaseEntityRepositoryImpl<Course,Integer> implements CourseRepository {
+public class CourseRepositoryImpl extends BaseEntityRepositoryImpl<Course, Integer> implements CourseRepository {
+
     public CourseRepositoryImpl(EntityManager entityManager) {
         super(entityManager);
     }

@@ -1,8 +1,8 @@
 package service;
 
 import entity.Employee;
-@SuppressWarnings("unused")
-public interface EmployeeService extends UserService<Employee>{
+import service.dto.EmployeePaySlip;
 
-
+public interface EmployeeService extends UserService<Employee> {
+    EmployeePaySlip showPaySlip();
 }

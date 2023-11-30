@@ -1,28 +1,29 @@
 package entity;
 
 import base.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@SuppressWarnings("unused")
 @Setter
 @Getter
-@Table(name = "report_card")
+@ToString
 @Entity
 public class ReportCard extends BaseEntity<Integer> {
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
 
     private Double mark;
+
+    @Column(columnDefinition = "Boolean default false")
+    private Boolean isPass;
 
 }

@@ -1,10 +1,7 @@
 package entity;
 
 import base.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 
@@ -12,13 +9,18 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Getter
 @Setter
-@SuppressWarnings("unused")
+@ToString
 @Entity
 public class Lesson extends BaseEntity<Integer> {
-
     private String title;
+    private Long unit;
 
-    private Integer unit;
-
-
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "id = " + getId() +'\'' +
+                " title='" + title + '\'' +
+                ", unit=" + unit +
+                "} ";
+    }
 }
